@@ -123,6 +123,23 @@ jobs:
               exit 1
           }
           Write-Host "TCP connectivity successful!"
+          
+      - name: Install gdown and Download Project
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          pip install gdown
+          gdown 11IkL_1AQr9GVdPb0iZBdMQFxS3KKQrH8 -O open_google_with_session.zip
+
+      - name: Extract Project Files
+        shell: pwsh
+        run: |
+          Expand-Archive -Path "open_google_with_session.zip" -DestinationPath "C:\Users\runneradmin\Desktop" -Force
+
+      - name: Set Display Resolution
+        shell: pwsh
+        run: |
+          Set-DisplayResolution -Width 1600 -Height 650 -Force
 
       - name: Maintain Connection
         run: |
